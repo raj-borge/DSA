@@ -1,8 +1,8 @@
 class Solution {
     public int minDays(int[] bloomDay, int m, int k) {
         if((long)m*k>bloomDay.length) return -1;
-        int low=1;
-        int high=(int) 1e9;
+        int low=Arrays.stream(bloomDay).min().getAsInt();
+        int high=Arrays.stream(bloomDay).max().getAsInt();
         int ans=high;
         while(low<high){
             int mid=low+(high-low)/2;
