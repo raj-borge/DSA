@@ -17,23 +17,24 @@ class Solution {
         }
         return ans;
     }
-    public boolean isPossible(int[] bloomDay,int m,int k,int day){
-        int total=0;
+    public boolean isPossible(int[] bloomDay, int m, int k, int day) {
 
-        for(int i=0;i<bloomDay.length;i++){
-            int count=0;
-            while(i<bloomDay.length && count<k && bloomDay[i]<=day){
-                count++;
-                i++;
-            }
-            if(count==k){
-                total++;
-                i--;
-            }
-            if(total>=m){
-                return true;
-            }
+    int bouquets = 0;
+    int flowers = 0;
+
+    for (int bloom : bloomDay) {
+
+        if (bloom <= day) {
+            flowers++;
         }
-        return false;
+        else {
+            bouquets += flowers / k;
+            flowers = 0;
+        }
+    }
+
+        bouquets += flowers / k;
+
+        return bouquets >= m;
     }
 }
